@@ -6,11 +6,24 @@ import tkinter as tk
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
+import datetime
+import asyncio
+
+error_message_getpantry = "Getpantry.cloud limited requests, please try the MagicGrow app later. Thanks!"
 
 print("takes about 10-15 seconds to load, please wait")
 
-#temperature info
+#Pantry setup
 pantry_id = "759b6bd3-6956-480d-afa4-5569177af40b"
+
+# EC getvalue
+ECPantry = get_contents(pantry_id, "EC", return_type="body")
+efowiejfioewjgiowejio = list(ECPantry.values())
+current_EC = efowiejfioewjgiowejio[-1]
+
+ECChanges = get_contents(pantry_id, "ECChanges", return_type="body")
+
+#temperature info
 
 tempPantry = get_contents(pantry_id, "temperature", return_type="body")
 
@@ -28,12 +41,18 @@ current_temperature = tempvalues[-1]
 current_pH = 5.8
 current_EC = 3.4
 
+#pH Up Changes
+pHUpChanges = get_contents(pantry_id, "pHUpChanges", return_type="body")
+print("pH Up Pump Changes done")
+
+#pH Down Changes
+pHDownChanges = get_contents(pantry_id, "pHDownChanges", return_type="body")
+print("pH Down Pump Changes done")
+
 #Water Pump Up Changes
 WaterPumpUpChanges = get_contents(pantry_id, "WaterUpPumpChanges", return_type="body")
 print("Water Pump Up Changes done")
 
-valuesWaterPumpUpChanges = WaterPumpUpChanges.values()
-print(valuesWaterPumpUpChanges)
 
 #Water Pump Down Changes
 WaterPumpDownChanges = get_contents(pantry_id, "WaterDownPumpChanges", return_type="body")
@@ -54,18 +73,14 @@ else:
 
 #pH info
 pHPantry = get_contents(pantry_id, "pH", return_type="body")
-pHPantryvalues = pHPantry.values()
-pHPantryvaluesFinal = list(pHPantryvalues)
-keyspH = []
-valuespH = []
+try:
+    fjoewjfoiewijo = pHPantry.values()
+    valuespH = list(fjoewjfoiewijo)
+    current_pH = valuespH[-1]
+    print("pH worked")
+except:
+    print(error_message_getpantry)
 
-#for pHkey in pHPantry.keys():
-#    keyspH.append(keyspH)
-
-
-fjoewjfoiewijo = pHPantry.values()
-valuespH = list(fjoewjfoiewijo)
-current_pH = valuespH[-1]
 print("pH done, window initializing")
 #customtkinter window
 
@@ -84,8 +99,6 @@ tabview.place(relx=0, rely=0.5, anchor='w', relheight =1, relwidth = 1)
 
 tabview.add("Homepage 🏠") # add tab
 tabview.add("Graphs/Charts 📈")  # add tab at the end
-tabview.add("About")  # add tab at the end
-tabview.add("Settings ⚙️")  # add tab at the end
 tabview.set("Homepage 🏠")  # set currently visible tab
 
 #Homepage
@@ -158,7 +171,7 @@ lightImageLabel.grid(row=3, column=0)
 ECFrame = customtkinter.CTkScrollableFrame(master=tabview.tab("Homepage 🏠"), width=200, height=200)
 ECFrame.place(relx=0, rely=0.2, anchor='w')
 
-ECEntry = customtkinter.CTkEntry(master=ECFrame, placeholder_text=str(str(current_EC) + " EC currently, set to"))
+ECEntry = customtkinter.CTkEntry(master=ECFrame, placeholder_text=str(str(current_EC) + " EC currently, set to (only higher)"))
 ECEntry.grid(padx=20, pady=20)
 
 ECView = customtkinter.CTkLabel(master=ECFrame, text= str(current_EC) + " EC", font=("arial", 22))
@@ -243,14 +256,55 @@ graphview.add("Up Pump Graph")  # add tab at the end
 graphview.add("Down Pump Graph")  # add tab at the end
 graphview.add("pH Up Nutrient Pump Graph")  # add tab at the end
 graphview.add("pH Down Nutrient Pump Graph")  # add tab at the end
-graphview.add("Base A Nutrient Pump Graph")  # add tab at the end
-graphview.add("Base B Nutrient Pump Graph")  # add tab at the end
+graphview.add("Base A and B Nutrient Pump Graph")  # add tab at the end
 
 graphview.set("Temperature Graph 🌡️")  # set currently visible tab
 
+# Water Pump Up graph
+fig = Figure(figsize=(5, 5), dpi=100)
+ax = fig.add_subplot(111)
+try:
+    ax.plot(WaterPumpUpChanges.keys(), WaterPumpUpChanges.values())
+except:
+    print(error_message_getpantry)
 
 
-# Create the Figure object
+# Create the Tkinter canvas containing the figure
+canvas = FigureCanvasTkAgg(fig, master=graphview.tab("Up Pump Graph"))
+canvas.draw()
+canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+
+# Water Pump Down graph
+fig = Figure(figsize=(5, 5), dpi=100)
+ax = fig.add_subplot(111)
+ax.plot(WaterPumpDownChanges.keys(), WaterPumpDownChanges.values())
+
+# Create the Tkinter canvas containing the figure
+canvas = FigureCanvasTkAgg(fig, master=graphview.tab("Down Pump Graph"))
+canvas.draw()
+canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+
+# pH up pump graph
+fig = Figure(figsize=(5, 5), dpi=100)
+ax = fig.add_subplot(111)
+ax.plot(pHUpChanges.keys(), pHUpChanges.values())
+
+# Create the Tkinter canvas containing the figure
+canvas = FigureCanvasTkAgg(fig, master=graphview.tab("pH Up Nutrient Pump Graph"))
+canvas.draw()
+canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+
+# pH Down pump graph
+fig = Figure(figsize=(5, 5), dpi=100)
+ax = fig.add_subplot(111)
+ax.plot(pHDownChanges.keys(), pHDownChanges.values())
+
+# Create the Tkinter canvas containing the figure
+canvas = FigureCanvasTkAgg(fig, master=graphview.tab("pH Down Nutrient Pump Graph"))
+canvas.draw()
+canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+
+# Temperature graph
 fig = Figure(figsize=(5, 5), dpi=100)
 ax = fig.add_subplot(111)
 ax.plot(tempkeys, tempvalues)
@@ -278,6 +332,48 @@ side_icon = customtkinter.CTkImage(light_image=Image.open("Side_icon.png"),
 
 side_icon_label = customtkinter.CTkLabel(tabview.tab("Homepage 🏠"), image=side_icon, text="")  # display image with a CTkLabel
 side_icon_label.pack(side="bottom")
+async def main():
+    root.after(0, lambda: root.state('zoomed'))
+    root.mainloop()
+async def getvalues():
+    #pH getvalue
+    # temperature getvalue
+    pHPantry = get_contents(pantry_id, "pH", return_type="body")
+    current_temperature = pHPantry.values()[-1]
 
-root.after(0, lambda: root.state('zoomed'))
-root.mainloop()
+    # temperature getvalue
+    tempPantry = get_contents(pantry_id, "temperature", return_type="body")
+    current_temperature = tempPantry.values()[-1]
+
+    # EC getvalue
+    ECPantry = get_contents(pantry_id, "EC", return_type="body")
+    current_EC = ECPantry.values()[-1]
+
+async def main2():
+    #pH code
+    if pHEntry.get() > current_pH:
+        pHDownChanges[str(datetime.now())] = "on"
+        pHUpChanges[str(datetime.now())] = "on"
+        append_basket(pantry_id, "pHUpChanges", pHUpChanges, return_type="body")
+        append_basket(pantry_id, "pHDownChanges", pHDownChanges, return_type="body")
+
+    if pHEntry.get() < current_pH:
+        pHDownChanges[str(datetime.now())] = "on"
+        pHUpChanges[str(datetime.now())] = "off"
+        append_basket(pantry_id, "pHUpChanges", pHUpChanges, return_type="body")
+        append_basket(pantry_id, "pHDownChanges", pHDownChanges, return_type="body")
+
+    # EC code
+    if ECEntry.get() > current_EC:
+        ECChanges[str(datetime.now())] = "on"
+        append_basket(pantry_id, "ECChanges", ECChanges, return_type="body")
+
+    if pHEntry.get() < current_pH:
+        ECChanges[str(datetime.now())] = "off"
+        append_basket(pantry_id, "ECChanges", ECChanges, return_type="body")
+
+
+#root.after(0, lambda: root.state('zoomed'))
+#root.mainloop()
+
+asyncio.get_event_loop().run_until_complete(main(), getvalues(), main2())
