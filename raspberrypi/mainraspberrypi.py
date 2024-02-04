@@ -78,22 +78,22 @@ execution = "none"
 async def main(execution):
 
     #Discovering Plugs
-    WaterPumpDown = SmartPlug("192.168.4.87")
+    WaterPumpDown = SmartPlug("192.168.4.99")
     await WaterPumpDown.update()
 
-    WaterPumpUp = SmartPlug("192.168.4.87")
+    WaterPumpUp = SmartPlug("192.168.4.100")
     await WaterPumpUp.update()
 
-    ECPumpUp = SmartPlug("192.168.4.87")
+    ECPumpUp = SmartPlug("192.168.4.101")
     await ECPumpUp.update()
 
     pHPumpDown = SmartPlug("192.168.4.87")
     await pHPumpDown.update()
 
-    pHPumpUp = SmartPlug("192.168.4.87")
+    pHPumpUp = SmartPlug("192.168.4.98")
     await pHPumpUp.update()
 
-    LightPlug = SmartPlug("192.168.4.87")
+    LightPlug = SmartPlug("192.168.4.89")
     await LightPlug.update()
 
     #functions
