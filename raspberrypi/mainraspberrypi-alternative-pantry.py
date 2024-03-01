@@ -66,7 +66,7 @@ pH.setDeviceSerialNumber(702002)
 pH.setHubPort(1)
 pH.openWaitForAttachment(5000)
 
-pantry_id = "759b6bd3-6956-480d-afa4-5569177af40b"
+pantry_id = "33f98734-b9a2-49c2-8206-8dcef96707dd"
 
 #main get_contents
 temperaturePantry = get_contents(pantry_id, "temperature", return_type="body")

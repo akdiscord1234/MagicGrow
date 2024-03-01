@@ -1,7 +1,3 @@
-#Use mainJsonBin.py, not this code for main code, this code is older
-
-#NOT MAIN CODE
-
 import customtkinter
 from PIL import Image
 from pantry_wrapper import *
@@ -18,7 +14,7 @@ error_message_getpantry = "Getpantry.cloud limited requests, please try the Magi
 print("takes about 10-15 seconds to load, please wait")
 
 #Pantry setup
-pantry_id = "759b6bd3-6956-480d-afa4-5569177af40b"
+pantry_id = "33f98734-b9a2-49c2-8206-8dcef96707dd"
 
 # EC getvalue
 ECPantry = get_contents(pantry_id, "EC", return_type="body")
