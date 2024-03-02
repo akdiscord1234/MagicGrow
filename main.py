@@ -18,8 +18,8 @@ pantry_id = "759b6bd3-6956-480d-afa4-5569177af40b"
 
 # EC getvalue
 ECPantry = get_contents(pantry_id, "EC", return_type="body")
-efowiejfioewjgiowejio = list(ECPantry.values())
-current_EC = efowiejfioewjgiowejio[-1]
+ECPantryListofValues = list(ECPantry.values())
+current_EC = ECPantryListofValues[-1]
 
 ECChanges = get_contents(pantry_id, "ECChanges", return_type="body")
 
@@ -102,9 +102,6 @@ tabview.add("Graphs/Charts 📈")  # add tab at the end
 tabview.set("Homepage 🏠")  # set currently visible tab
 
 #Homepage
-
-
-
 
 #temperature frame in Homepage
 temperatureFrame = customtkinter.CTkScrollableFrame(master=tabview.tab("Homepage 🏠"), width=200, height=200)
@@ -192,6 +189,7 @@ WaterPumpUpFrame.place(relx=0.6, rely=0.2, anchor='w')
 #WaterPumpUpEntry = customtkinter.CTkEntry(master=WaterPumpUpFrame, placeholder_text=str("Water Pump is " + str(current_WaterPumpUp_str)))
 #WaterPumpUpEntry.grid(padx=20, pady=20)
 
+#optionmenu code
 global WaterPumpUpChoice
 WaterPumpUpChoice = "pump" + current_WaterPumpUp_str
 def WaterPumpUp_option_menu(WaterPumpUpChoice):
@@ -222,6 +220,7 @@ WaterPumpDownFrame.place(relx=0.6, rely=0.6, anchor='w')
 #WaterPumpDownEntry = customtkinter.CTkEntry(master=WaterPumpDownFrame, placeholder_text=str("Water Pump is " + str(current_WaterPumpDown_str)))
 #WaterPumpDownEntry.grid(padx=20, pady=20)
 
+#optionmenu code
 global WaterPumpDownChoice
 WaterPumpDownChoice = "pump" + current_WaterPumpDown_str
 def WaterPumpDown_option_menu(WaterPumpDownChoice):
@@ -269,7 +268,6 @@ except:
     print(error_message_getpantry)
 
 
-# Create the Tkinter canvas containing the figure
 canvas = FigureCanvasTkAgg(fig, master=graphview.tab("Up Pump Graph"))
 canvas.draw()
 canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
@@ -279,7 +277,6 @@ fig = Figure(figsize=(5, 5), dpi=100)
 ax = fig.add_subplot(111)
 ax.plot(WaterPumpDownChanges.keys(), WaterPumpDownChanges.values())
 
-# Create the Tkinter canvas containing the figure
 canvas = FigureCanvasTkAgg(fig, master=graphview.tab("Down Pump Graph"))
 canvas.draw()
 canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
@@ -289,7 +286,6 @@ fig = Figure(figsize=(5, 5), dpi=100)
 ax = fig.add_subplot(111)
 ax.plot(pHUpChanges.keys(), pHUpChanges.values())
 
-# Create the Tkinter canvas containing the figure
 canvas = FigureCanvasTkAgg(fig, master=graphview.tab("pH Up Nutrient Pump Graph"))
 canvas.draw()
 canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
@@ -299,7 +295,6 @@ fig = Figure(figsize=(5, 5), dpi=100)
 ax = fig.add_subplot(111)
 ax.plot(pHDownChanges.keys(), pHDownChanges.values())
 
-# Create the Tkinter canvas containing the figure
 canvas = FigureCanvasTkAgg(fig, master=graphview.tab("pH Down Nutrient Pump Graph"))
 canvas.draw()
 canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
@@ -309,7 +304,6 @@ fig = Figure(figsize=(5, 5), dpi=100)
 ax = fig.add_subplot(111)
 ax.plot(tempkeys, tempvalues)
 
-# Create the Tkinter canvas containing the figure
 canvas = FigureCanvasTkAgg(fig, master=graphview.tab("Temperature Graph 🌡️"))
 canvas.draw()
 canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
@@ -320,7 +314,6 @@ fig = Figure(figsize=(5, 5), dpi=100)
 ax = fig.add_subplot(111)
 ax.plot(pHPantry.keys(), pHPantry.values())
 
-# Create the Tkinter canvas containing the figure
 canvas = FigureCanvasTkAgg(fig, master=graphview.tab("pH Graph"))
 canvas.draw()
 canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
@@ -349,7 +342,7 @@ async def getvalues():
     ECPantry = get_contents(pantry_id, "EC", return_type="body")
     current_EC = ECPantry.values()[-1]
 
-async def main2():
+async def main2(): #this is for turning on and off the pumps and handling the user requests client wise
     #pH code
     if pHEntry.get() > current_pH:
         pHDownChanges[str(datetime.now())] = "on"

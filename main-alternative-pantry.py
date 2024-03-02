@@ -1,3 +1,5 @@
+#much of the code is commented out because this alternative code has limiited functionality and is not the same as the original code.
+#The code is commetned out to make sure that this alternative code will work properly if the main code does not work
 import customtkinter
 from PIL import Image
 from pantry_wrapper import *
@@ -344,7 +346,7 @@ async def getvalues():
     ECPantry = get_contents(pantry_id, "EC", return_type="body")
     current_EC = ECPantry.values()[-1]
 
-#async def main2():
+#async def main2(): #this is for turning on and off the pumps and handling the user requests client wise
 
     #pH code
     #if pHEntry.get() > current_pH:
