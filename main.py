@@ -1,7 +1,3 @@
-#Use mainJsonBin.py, not this code for main code, this code is older
-
-#NOT MAIN CODE
-
 import customtkinter
 from PIL import Image
 from pantry_wrapper import *
@@ -13,7 +9,7 @@ from matplotlib.figure import Figure
 import datetime
 import asyncio
 
-error_message_getpantry = "Getpantry.cloud limited requests, please try the MagicGrow app later. Thanks!"
+error_message_getpantry = "Getpantry.cloud, my JSON cloud server, limited requests or storage. Please try the main-alternative-pantry.py file, and if that does not work also try the main-without-pantry-if-error file. Thanks!"
 
 print("takes about 10-15 seconds to load, please wait")
 
