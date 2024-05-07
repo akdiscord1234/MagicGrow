@@ -22,6 +22,10 @@ app.rowconfigure((0, 1), weight=1)
 MagicGrowLabel = customtkinter.CTkLabel(master=app, text="MagicGrow Home", text_color="green", font=("Calibri", 44))
 
 #Temperature schedule
+global Temperature
+Temperature = 20
+
+TemperatureLabel = customtkinter.CTkLabel(master=app, text="Temperature: " + str(Temperature) + "°C", text_color="blue", font=("Calibri", 44))
 
 #EC schedule
 
@@ -32,5 +36,6 @@ MagicGrowLabel = customtkinter.CTkLabel(master=app, text="MagicGrow Home", text_
 #Placing Widgets Layout
 
 MagicGrowLabel.grid(row=0, column=0, padx=20)
+TemperatureLabel.grid(row=1, column=0, padx=20)
 
 app.mainloop()
