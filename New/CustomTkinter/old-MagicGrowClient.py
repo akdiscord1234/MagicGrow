@@ -6,75 +6,13 @@ import tkinter as tk
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
-import datetime
-import asyncio
 
-error_message_getpantry = "Getpantry.cloud limited requests, please try the MagicGrow app later. Thanks!"
 
 print("takes about 10-15 seconds to load, please wait")
-
-#Pantry setup
-pantry_id = "759b6bd3-6956-480d-afa4-5569177af40b"
-
-# EC getvalue
-#ECPantry = get_contents(pantry_id, "EC", return_type="body")
-#efowiejfioewjgiowejio = list(ECPantry.values())
-#c#urrent_EC = efowiejfioewjgiowejio[-1]
-
-#ECChanges = get_contents(pantry_id, "ECChanges", return_type="body")
-
-#temperature info
-
-# tempPantry = get_contents(pantry_id, "temperature", return_type="body")
-
-# tempkeys = []
-# tempvalues = []
-
-# for tempkey in tempPantry.keys():
-#     tempkeys.append(tempkey)
-
-# for tempvalue in tempPantry.values():
-#     tempvalues.append(tempvalue)
-# print("temperature done")
-# current_temperature = tempvalues[-1]
 
 current_pH = 5.8
 current_EC = 3.4
 current_temperature = 30
-
-# #pH Up Changes
-# pHUpChanges = get_contents(pantry_id, "pHUpChanges", return_type="body")
-# print("pH Up Pump Changes done")
-
-# #pH Down Changes
-# pHDownChanges = get_contents(pantry_id, "pHDownChanges", return_type="body")
-# print("pH Down Pump Changes done")
-
-# #Water Pump Up Changes
-# WaterPumpUpChanges = get_contents(pantry_id, "WaterUpPumpChanges", return_type="body")
-# print("Water Pump Up Changes done")
-
-
-#Water Pump Down Changes
-# WaterPumpDownChanges = get_contents(pantry_id, "WaterDownPumpChanges.json", return_type="body")
-# print("Water Down Up Changes done")
-# #Water Pump Up
-# current_WaterPumpUpOn = True
-# if current_WaterPumpUpOn == True:
-#     current_WaterPumpUp_str = "On"
-# else:
-#     current_WaterPumpUp_str = "Off"
-
-# #Water Pump Down
-# current_WaterPumpDownOn = True
-# if current_WaterPumpDownOn == True:
-#     current_WaterPumpDown_str = "On"
-# else:
-#     current_WaterPumpDown_str = "Off"
-
-# #pH info
-# pHPantry = get_contents(pantry_id, "pH", return_type="body")
-# current_pH = 6.5
 
 print("pH done, window initializing")
 #customtkinter window
@@ -84,12 +22,12 @@ customtkinter.set_default_color_theme("green")
 customtkinter.set_appearance_mode("dark")  # default
 
 #initial setup
-root = customtkinter.CTk()
+app = customtkinter.CTk()
 #root.geometry("700x700") uses maximized window
-root.title("MagicGrow 2.0")
+app.title("MagicGrow")
 
 #tabview setup
-tabview = customtkinter.CTkTabview(master=root)
+tabview = customtkinter.CTkTabview(master=app)
 tabview.place(relx=0, rely=0.5, anchor='w', relheight =1, relwidth = 1)
 
 tabview.add("Homepage 🏠") # add tab
@@ -97,9 +35,6 @@ tabview.add("Graphs/Charts 📈")  # add tab at the end
 tabview.set("Homepage 🏠")  # set currently visible tab
 
 #Homepage
-
-
-
 
 #temperature frame in Homepage
 temperatureFrame = customtkinter.CTkScrollableFrame(master=tabview.tab("Homepage 🏠"), width=200, height=200)
@@ -111,8 +46,8 @@ temperatureEntry.pack(padx=20, pady=20)
 temperatureView = customtkinter.CTkLabel(master=temperatureFrame, text= str(current_temperature) + " °C", font=("arial", 22))
 temperatureView.pack(padx=20, pady=20)
 
-temperatureImage = customtkinter.CTkImage(light_image=Image.open("Old\Temp_icon.jpg"),
-                                          dark_image=Image.open("Old\Temp_icon.jpg"),
+temperatureImage = customtkinter.CTkImage(light_image=Image.open(r"Images\Temp_icon.jpg"),
+                                          dark_image=Image.open(r"Images\Temp_icon.jpg"),
                                           size=(50, 70))
 
 temperatureImageLabel = customtkinter.CTkLabel(master=temperatureFrame, image=temperatureImage, text="")  # display image with a CTkLabel
@@ -128,8 +63,8 @@ pHEntry.grid(padx=20, pady=20)
 pHView = customtkinter.CTkLabel(master=pHFrame, text= str(current_pH) + " pH", font=("arial", 22))
 pHView.grid(padx=20, pady=20)
 
-pHImage = customtkinter.CTkImage(light_image=Image.open("Old\pH_icon.jpg"),
-                                 dark_image=Image.open("Old\pH_icon.jpg"),
+pHImage = customtkinter.CTkImage(light_image=Image.open(r"Images\pH_icon.jpg"),
+                                 dark_image=Image.open(r"Images\pH_icon.jpg"),
                                  size=(70, 70))
 
 pHImageLabel = customtkinter.CTkLabel(master=pHFrame, image=pHImage, text="")  # display image with a CTkLabel
@@ -155,8 +90,8 @@ optionmenu.grid(padx=20, pady=20)
 lightView = customtkinter.CTkLabel(master=lightFrame, text= str(choice1), font=("arial", 22))
 lightView.grid(padx=20, pady=20)
 
-lightImage = customtkinter.CTkImage(light_image=Image.open("Old\Light_icon.png"),
-                                    dark_image=Image.open("Old\Light_icon.png"),
+lightImage = customtkinter.CTkImage(light_image=Image.open(r"Images\Light_icon.png"),
+                                    dark_image=Image.open(r"Images\Light_icon.png"),
                                     size=(70, 70))
 
 lightImageLabel = customtkinter.CTkLabel(master=lightFrame, image=lightImage, text="")  # display image with a CTkLabel
@@ -173,8 +108,8 @@ ECView = customtkinter.CTkLabel(master=ECFrame, text= str(current_EC) + " EC", f
 ECView.grid(padx=20, pady=20)
 
 
-ECImage = customtkinter.CTkImage(light_image=Image.open("Old\Ec_icon.jpg"),
-                                 dark_image=Image.open("Old\Ec_icon.jpg"),
+ECImage = customtkinter.CTkImage(light_image=Image.open(r"Images\Ec_icon.jpg"),
+                                 dark_image=Image.open(r"Images\Ec_icon.jpg"),
                                  size=(70, 70))
 
 ECImageLabel = customtkinter.CTkLabel(master=ECFrame, image=ECImage, text="")  # display image with a CTkLabel
@@ -205,8 +140,8 @@ WaterPumpUpView = customtkinter.CTkLabel(master=WaterPumpUpFrame, text= "Water P
 WaterPumpUpView.grid(padx=20, pady=20)
 
 
-WaterPumpUpImage = customtkinter.CTkImage(light_image=Image.open("Old\PumpON_icon.jpg"),
-                                          dark_image=Image.open("Old\PumpON_icon.jpg"),
+WaterPumpUpImage = customtkinter.CTkImage(light_image=Image.open(r"Images\PumpON_icon.jpg"),
+                                          dark_image=Image.open(r"Images\PumpON_icon.jpg"),
                                           size=(70, 70))
 
 WaterPumpUpImageLabel = customtkinter.CTkLabel(master=WaterPumpUpFrame, image=WaterPumpUpImage, text="")  # display image with a CTkLabel
@@ -236,8 +171,8 @@ WaterPumpDownView = customtkinter.CTkLabel(master=WaterPumpDownFrame, text= "Wat
 WaterPumpDownView.grid(padx=20, pady=20)
 
 
-WaterPumpDownImage = customtkinter.CTkImage(light_image=Image.open("Old\PumpOFF_icon.jpg"),
-                                            dark_image=Image.open("Old\PumpOFF_icon.jpg"),
+WaterPumpDownImage = customtkinter.CTkImage(light_image=Image.open(r"Images\PumpOFF_icon.jpg"),
+                                           dark_image=Image.open(r"Images\PumpOFF_icon.jpg"),
                                             size=(70, 70))
 
 WaterPumpDownImageLabel = customtkinter.CTkLabel(master=WaterPumpDownFrame, image=WaterPumpDownImage, text="")  # display image with a CTkLabel
@@ -258,120 +193,18 @@ graphview.add("Base A and B Nutrient Pump Graph")  # add tab at the end
 
 graphview.set("Temperature Graph 🌡️")  # set currently visible tab
 
-# Water Pump Up graph
-#fig = Figure(figsize=(5, 5), dpi=100)
-#ax = fig.add_subplot(111)
-#try:
-#    ax.plot(WaterPumpUpChanges.keys(), WaterPumpUpChanges.values())
-#except:
-#    print(error_message_getpantry)
+#GRAPH CODE HERE
 
-
-# Create the Tkinter canvas containing the figure
-#canvas = FigureCanvasTkAgg(fig, master=graphview.tab("Up Pump Graph"))
-#canvas.draw()
-#canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-
-# Water Pump Down graph
-#fig = Figure(figsize=(5, 5), dpi=100)
-#ax = fig.add_subplot(111)
-#ax.plot(WaterPumpDownChanges.keys(), WaterPumpDownChanges.values())
-
-# Create the Tkinter canvas containing the figure
-#canvas = FigureCanvasTkAgg(fig, master=graphview.tab("Down Pump Graph"))
-#canvas.draw()
-#canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-
-# pH up pump graph
-#fig = Figure(figsize=(5, 5), dpi=100)
-#ax = fig.add_subplot(111)
-#ax.plot(pHUpChanges.keys(), pHUpChanges.values())
-
-# Create the Tkinter canvas containing the figure
-#canvas = FigureCanvasTkAgg(fig, master=graphview.tab("pH Up Nutrient Pump Graph"))
-#canvas.draw()
-#canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-
-# pH Down pump graph
-#fig = Figure(figsize=(5, 5), dpi=100)
-#ax = fig.add_subplot(111)
-#ax.plot(pHDownChanges.keys(), pHDownChanges.values())
-
-# Create the Tkinter canvas containing the figure
-#canvas = FigureCanvasTkAgg(fig, master=graphview.tab("pH Down Nutrient Pump Graph"))
-#canvas.draw()
-#canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-
-# Temperature graph
-#fig = Figure(figsize=(5, 5), dpi=100)
-#ax = fig.add_subplot(111)
-#ax.plot(tempkeys, tempvalues)
-
-# Create the Tkinter canvas containing the figure
-#canvas = FigureCanvasTkAgg(fig, master=graphview.tab("Temperature Graph 🌡️"))
-#c#anvas.draw()
-#ca3nvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-
-
-#pH graph
-#fig = Figure(figsize=(5, 5), dpi=100)
-#ax = fig.add_subplot(111)
-#ax.plot(pHPantry.keys(), pHPantry.values())
-
-# Create the Tkinter canvas containing the figure
-#canvas = FigureCanvasTkAgg(fig, master=graphview.tab("pH Graph"))
-#canvas.draw()
-#canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-
-
-side_icon = customtkinter.CTkImage(light_image=Image.open("Old\Side_icon.png"),
-                                   dark_image=Image.open("Old\Side_icon.png"),
+side_icon = customtkinter.CTkImage(light_image=Image.open(r"Images\Side_icon.png"),
+                                   dark_image=Image.open(r"Images\Side_icon.png"),
                                    size=(210, 210))
 
 side_icon_label = customtkinter.CTkLabel(tabview.tab("Homepage 🏠"), image=side_icon, text="")  # display image with a CTkLabel
 side_icon_label.pack(side="bottom")
-async def main():
-    root.after(0, lambda: root.state('zoomed'))
-    root.mainloop()
-#async def getvalues():
-#    #pH getvalue
-#    # temperature getvalue
-#    pHPantry = get_contents(pantry_id, "pH", return_type="body")
-#    current_temperature = pHPantry.values()[-1]
-#
-#    # temperature getvalue
-#    tempPantry = get_contents(pantry_id, "temperature", return_type="body")
-#    current_temperature = tempPantry.values()[-1]
-#3
-#    # EC getvalue
-#    ECPantry = get_contents(pantry_id, "EC", return_type="body")
-#    current_EC = ECPantry.values()[-1]
 
-#async def main2():
-    #pH code
-#    if pHEntry.get() > current_pH:
-#        pHDownChanges[str(datetime.now())] = "on"
-#        pHUpChanges[str(datetime.now())] = "on"
-#        append_basket(pantry_id, "pHUpChanges", pHUpChanges, return_type="body")
-#        append_basket(pantry_id, "pHDownChanges", pHDownChanges, return_type="body")
-#
-#    if pHEntry.get() < current_pH:
-#        pHDownChanges[str(datetime.now())] = "on"
-#        pHUpChanges[str(datetime.now())] = "off"
-#        append_basket(pantry_id, "pHUpChanges", pHUpChanges, return_type="body")
-#        append_basket(pantry_id, "pHDownChanges", pHDownChanges, return_type="body")
-#Q
-#    # EC code
-#    if ECEntry.get() > current_EC:
-#        ECChanges[str(datetime.now())] = "on"
-#        append_basket(pantry_id, "ECChanges", ECChanges, return_type="body")
-#
-#    if pHEntry.get() < current_pH:
-#        ECChanges[str(datetime.now())] = "off"
-#3        append_basket(pantry_id, "ECChanges", ECChanges, return_type="body")
+try:
+    app.after(0, lambda: app.state('zoomed'))
+    app.mainloop()
 
-
-root.after(0, lambda: root.state('zoomed'))
-root.mainloop()
-
-#asyncio.get_event_loop().run_forever(main)
+except:
+    print("the last 2 lines of code don't work")
