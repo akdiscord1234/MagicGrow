@@ -1,5 +1,6 @@
 import customtkinter
 from PIL import Image
+import pathlib
 
 #set initial pH, EC, temperature, ect that will be found real values later on
 
@@ -69,7 +70,7 @@ HomePageTab.rowconfigure(2, weight=2)
 
 #Side Icon
 
-Side_Icon_Image = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\PycharmProjects\MagicGrow\New\CustomTkinter\Images\Side_icon.png"), size=(200, 200))
+Side_Icon_Image = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Side_icon.png"), size=(200, 200))
 Side_Icon_Image_Holder = customtkinter.CTkLabel(master=HomePageTab, image=Side_Icon_Image, text="")
 Side_Icon_Image_Holder.grid(column=2, row=1, sticky="nw")
 
@@ -90,7 +91,7 @@ TemperatureEntryTime.pack(side="top", anchor="n")
 TemperatureInfo = customtkinter.CTkLabel(master=TemperatureFrame, text=str(current_temperature) + "°C", font=("arial", 22))
 TemperatureInfo.pack(side="top")
 
-TemperatureImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\PycharmProjects\MagicGrow\New\CustomTkinter\Images\Temp_icon.jpg"), size=(83, 116))
+TemperatureImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Temp_icon.jpg"), size=(83, 116))
 TemperatureImageHolder = customtkinter.CTkLabel(master=TemperatureFrame, image=TemperatureImage, text="")
 TemperatureImageHolder.pack(side="top")
 
@@ -114,7 +115,7 @@ pHEntryTime.pack(side="top", anchor="n")
 pHInfo = customtkinter.CTkLabel(master=pHFrame, text=str(current_pH) + " pH", font=("arial", 22))
 pHInfo.pack(side="top")
 
-pHImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\PycharmProjects\MagicGrow\New\CustomTkinter\Images\pH_icon.jpg"), size=(100, 100))
+pHImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\pH_icon.jpg"), size=(100, 100))
 pHImageHolder = customtkinter.CTkLabel(master=pHFrame, image=pHImage, text="")
 pHImageHolder.pack(side="top")
 
@@ -138,7 +139,7 @@ ECEntryTime.pack(side="top", anchor="n")
 ECInfo = customtkinter.CTkLabel(master=ECFrame, text=str(current_EC) + " EC", font=("arial", 22))
 ECInfo.pack(side="top")
 
-ECImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\PycharmProjects\MagicGrow\New\CustomTkinter\Images\Ec_icon.jpg"), size=(100, 100))
+ECImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Ec_icon.jpg"), size=(100, 100))
 ECImageHolder = customtkinter.CTkLabel(master=ECFrame, image=ECImage, text="")
 ECImageHolder.pack(side="top")
 
@@ -163,7 +164,7 @@ LightStartTime.pack(side="top")
 LightEndTime = customtkinter.CTkEntry(master=LightFrame, placeholder_text="Light Sched End Time")
 LightEndTime.pack(side="top")
 
-LightImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\PycharmProjects\MagicGrow\New\CustomTkinter\Images\Light_icon.png"), size=(100, 100))
+LightImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Light_icon.png"), size=(100, 100))
 LightImageHolder = customtkinter.CTkLabel(master=LightFrame, image=LightImage, text="")
 LightImageHolder.pack(side="top")
 
@@ -181,7 +182,7 @@ optionmenu_WaterPump.set("Automatic")
 
 optionmenu_WaterPump.pack(side="top")
 
-WaterPumpImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\PycharmProjects\MagicGrow\New\CustomTkinter\Images\WaterPump_Icon.jpeg"), size=(100, 100))
+WaterPumpImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\WaterPump_Icon.jpeg"), size=(100, 100))
 WaterPumpImageHolder = customtkinter.CTkLabel(master=WaterPumpFrame, image=WaterPumpImage, text="")
 WaterPumpImageHolder.pack(side="top")
 
