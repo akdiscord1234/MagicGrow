@@ -1,6 +1,5 @@
 import customtkinter
 from PIL import Image
-from pantry_wrapper import *
 import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import ttk
@@ -46,8 +45,8 @@ temperatureEntry.pack(padx=20, pady=20)
 temperatureView = customtkinter.CTkLabel(master=temperatureFrame, text= str(current_temperature) + " °C", font=("arial", 22))
 temperatureView.pack(padx=20, pady=20)
 
-temperatureImage = customtkinter.CTkImage(light_image=Image.open(r"Images\Temp_icon.jpg"),
-                                          dark_image=Image.open(r"Images\Temp_icon.jpg"),
+temperatureImage = customtkinter.CTkImage(light_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Temp_icon.jpg"),
+                                          dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Temp_icon.jpg"),
                                           size=(50, 70))
 
 temperatureImageLabel = customtkinter.CTkLabel(master=temperatureFrame, image=temperatureImage, text="")  # display image with a CTkLabel
@@ -63,8 +62,8 @@ pHEntry.grid(padx=20, pady=20)
 pHView = customtkinter.CTkLabel(master=pHFrame, text= str(current_pH) + " pH", font=("arial", 22))
 pHView.grid(padx=20, pady=20)
 
-pHImage = customtkinter.CTkImage(light_image=Image.open(r"Images\pH_icon.jpg"),
-                                 dark_image=Image.open(r"Images\pH_icon.jpg"),
+pHImage = customtkinter.CTkImage(light_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\pH_icon.jpg"),
+                                 dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\pH_icon.jpg"),
                                  size=(70, 70))
 
 pHImageLabel = customtkinter.CTkLabel(master=pHFrame, image=pHImage, text="")  # display image with a CTkLabel
@@ -90,8 +89,8 @@ optionmenu.grid(padx=20, pady=20)
 lightView = customtkinter.CTkLabel(master=lightFrame, text= str(choice1), font=("arial", 22))
 lightView.grid(padx=20, pady=20)
 
-lightImage = customtkinter.CTkImage(light_image=Image.open(r"Images\Light_icon.png"),
-                                    dark_image=Image.open(r"Images\Light_icon.png"),
+lightImage = customtkinter.CTkImage(light_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Light_icon.png"),
+                                    dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Light_icon.png"),
                                     size=(70, 70))
 
 lightImageLabel = customtkinter.CTkLabel(master=lightFrame, image=lightImage, text="")  # display image with a CTkLabel
@@ -108,8 +107,8 @@ ECView = customtkinter.CTkLabel(master=ECFrame, text= str(current_EC) + " EC", f
 ECView.grid(padx=20, pady=20)
 
 
-ECImage = customtkinter.CTkImage(light_image=Image.open(r"Images\Ec_icon.jpg"),
-                                 dark_image=Image.open(r"Images\Ec_icon.jpg"),
+ECImage = customtkinter.CTkImage(light_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Ec_icon.jpg"),
+                                 dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Ec_icon.jpg"),
                                  size=(70, 70))
 
 ECImageLabel = customtkinter.CTkLabel(master=ECFrame, image=ECImage, text="")  # display image with a CTkLabel
@@ -140,8 +139,8 @@ WaterPumpUpView = customtkinter.CTkLabel(master=WaterPumpUpFrame, text= "Water P
 WaterPumpUpView.grid(padx=20, pady=20)
 
 
-WaterPumpUpImage = customtkinter.CTkImage(light_image=Image.open(r"Images\PumpON_icon.jpg"),
-                                          dark_image=Image.open(r"Images\PumpON_icon.jpg"),
+WaterPumpUpImage = customtkinter.CTkImage(light_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\PumpON_icon.jpg"),
+                                          dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\PumpON_icon.jpg"),
                                           size=(70, 70))
 
 WaterPumpUpImageLabel = customtkinter.CTkLabel(master=WaterPumpUpFrame, image=WaterPumpUpImage, text="")  # display image with a CTkLabel
@@ -171,8 +170,8 @@ WaterPumpDownView = customtkinter.CTkLabel(master=WaterPumpDownFrame, text= "Wat
 WaterPumpDownView.grid(padx=20, pady=20)
 
 
-WaterPumpDownImage = customtkinter.CTkImage(light_image=Image.open(r"Images\PumpOFF_icon.jpg"),
-                                           dark_image=Image.open(r"Images\PumpOFF_icon.jpg"),
+WaterPumpDownImage = customtkinter.CTkImage(light_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\PumpOFF_icon.jpg"),
+                                           dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\PumpOFF_icon.jpg"),
                                             size=(70, 70))
 
 WaterPumpDownImageLabel = customtkinter.CTkLabel(master=WaterPumpDownFrame, image=WaterPumpDownImage, text="")  # display image with a CTkLabel
@@ -195,8 +194,8 @@ graphview.set("Temperature Graph 🌡️")  # set currently visible tab
 
 #GRAPH CODE HERE
 
-side_icon = customtkinter.CTkImage(light_image=Image.open(r"Images\Side_icon.png"),
-                                   dark_image=Image.open(r"Images\Side_icon.png"),
+side_icon = customtkinter.CTkImage(light_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Side_icon.png"),
+                                   dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Side_icon.png"),
                                    size=(210, 210))
 
 side_icon_label = customtkinter.CTkLabel(tabview.tab("Homepage 🏠"), image=side_icon, text="")  # display image with a CTkLabel

@@ -1,10 +1,11 @@
+#Flask Webserver
 from flask import Flask
-import webserver_test_without_sense as webserver
+import webserver
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'Welcome to the MagicGrow Webserver Api!'
 
 #Getting current values
 

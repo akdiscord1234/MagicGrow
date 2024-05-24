@@ -1,6 +1,19 @@
+import sys
+PATH = sys.executable
+print(PATH)
+
 import customtkinter
 from PIL import Image
 import pathlib
+from selenium import webdriver
+
+from matplotlib import *
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
+import tkinter as tk
+
+#Setup accessing the api on server
+browser = webdriver.Chrome()
 
 #set initial pH, EC, temperature, ect that will be found real values later on
 
@@ -15,8 +28,6 @@ customtkinter.set_appearance_mode("dark")
 #root setup
 app = customtkinter.CTk()
 app.geometry('%dx%d+%d+%d' % (1000, 700, 0, 0)) #w, h, x, y
-
-
 
 app.title("MagicGrow")
 
@@ -37,27 +48,46 @@ HomepageFrameWidth = 300
 HomepageFrameHeight = 300
 
 #Functions
-
 #Water Pump OptionMenu
 def optionmenu_callback_WaterPump(choice):
-    print("optionmenu dropdown clicked:", choice)
+    if choice == "Pump Up On, Pump Down Off":
+        browser.get("http://192.168.0.100:5000//water_pump_up_on")
+        browser.get("http://192.168.0.100:5000/water_pump_down_off")
+    elif choice == "Pump Up On, Pump Down On":
+        browser.get("http://192.168.0.100:5000//water_pump_up_on")
+        browser.get("http://192.168.0.100:5000//water_pump_down_on")
+    elif choice == "Pump Up Off, Pump Down Off":
+        browser.get("http://192.168.0.100:5000//water_pump_up_off")
+        browser.get("http://192.168.0.100:5000//water_pump_down_off")
+    elif choice == "Pump Up Off, Pump Down On":
+        browser.get("http://192.168.0.100:5000//water_pump_up_off")
+        browser.get("http://192.168.0.100:5000//water_pump_down_on")
+    elif choice == "Automatic":
+        pass
 
 #Light Switch
 def switch_event_Light():
     print("switch toggled, current value:", switch_var_Light.get())
+    if switch_event_Light.get == "off":
+        browser.get("http://192.168.0.100:5000/light_off")
+    elif switch_event_Light.get == "on":
+        browser.get("http://192.168.0.100:5000/light_on")
 
 switch_var_Light = customtkinter.StringVar(value="on")
 
 #Temperature Enter Button
 def Temperature_Enter_Button():
+    #Code here for Scheduling the Change of Temperature
     pass
 
 #pH Enter Button
 def pH_Enter_Button():
+    #Code here for Scheduling the Change of pH
     pass
 
 #EC Enter Button
 def EC_Enter_Button():
+    #Code here for Scheduling the Change of EC
     pass
 
 #GridConfigure for Homepage
@@ -185,6 +215,25 @@ optionmenu_WaterPump.pack(side="top")
 WaterPumpImage = customtkinter.CTkImage(dark_image=Image.open(r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\WaterPump_Icon.jpeg"), size=(100, 100))
 WaterPumpImageHolder = customtkinter.CTkLabel(master=WaterPumpFrame, image=WaterPumpImage, text="")
 WaterPumpImageHolder.pack(side="top")
+
+
+#Graphs/Charts
+
+graphview = customtkinter.CTkTabview(master=tabview.tab("Graphs/Charts 📈"))
+graphview.pack(padx=10, pady=10, ipadx=1200, ipady=100)
+
+graphview.add("Temperature Graph 🌡️") # add tab
+graphview.add("pH Graph")  # add tab at the end
+graphview.add("Up Pump Graph")  # add tab at the end
+graphview.add("Down Pump Graph")  # add tab at the end
+graphview.add("pH Up Nutrient Pump Graph")  # add tab at the end
+graphview.add("pH Down Nutrient Pump Graph")  # add tab at the end
+graphview.add("Base A and B Nutrient Pump Graph")  # add tab at the end
+
+graphview.set("Temperature Graph 🌡️")  # set currently visible tab
+
+#Code for accessing graphs here
+
 
 #mainloop
 
