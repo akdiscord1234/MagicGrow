@@ -3,7 +3,7 @@
 import random
 import time
 import re
-import Kasa
+import kasa
 from Phidget22.Devices.TemperatureSensor import *
 from Phidget22.Devices.PHSensor import *
 import time
@@ -22,23 +22,23 @@ VREF = 5.0
 SCOUNT = 30
 
 # Initialize Arduino board
-board = Arduino('/dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_85733323939351A04291-if00')  # Replace with the correct port for your Arduino
-
-analogBuffer = [0] * SCOUNT
-analogBufferTemp = [0] * SCOUNT
-analogBufferIndex = 0
-copyIndex = 0
-
-averageVoltage = 0
-tdsValue = 0
-temperature = 19.5
-
-it = util.Iterator(board)
-it.start()
-
-# Configure analog pin
-tds_sensor = board.get_pin('a:' + str(TdsSensorPin) + ':i')
-time.sleep(1)
+# board = Arduino('/dev/serial/by-id/usb-Arduino__www.arduino.cc__0043_85733323939351A04291-if00')  # Replace with the correct port for your Arduino
+#
+# analogBuffer = [0] * SCOUNT
+# analogBufferTemp = [0] * SCOUNT
+# analogBufferIndex = 0
+# copyIndex = 0
+#
+# averageVoltage = 0
+# tdsValue = 0
+# temperature = 19.5
+#
+# it = util.Iterator(board)
+# it.start()
+#
+# # Configure analog pin
+# tds_sensor = board.get_pin('a:' + str(TdsSensorPin) + ':i')
+# time.sleep(1)
 
 def get_median_num(b_array, i_filter_len):
     b_tab = b_array.copy()
@@ -56,36 +56,36 @@ def get_median_num(b_array, i_filter_len):
 
     return b_temp
 
-
-#temperature sensing
-temp = TemperatureSensor()
-temp.setDeviceSerialNumber(702002)
-temp.setHubPort(0)
-temp.openWaitForAttachment(5000)
-
-#pH sensing
-pH = PHSensor()
-pH.setDeviceSerialNumber(702002)
-pH.setHubPort(1)
-pH.openWaitForAttachment(5000)
+#
+# #temperature sensing
+# temp = TemperatureSensor()
+# temp.setDeviceSerialNumber(702002)
+# temp.setHubPort(0)
+# temp.openWaitForAttachment(5000)
+#
+# #pH sensing
+# pH = PHSensor()
+# pH.setDeviceSerialNumber(702002)
+# pH.setHubPort(1)
+# pH.openWaitForAttachment(5000)
 
 #Discovering Plugs
-WaterPumpDown = Kasa.SmartPlug("192.168.4.99")
+WaterPumpDown = kasa.SmartPlug("192.168.4.99")
 WaterPumpDown.update()
 
-WaterPumpUp = Kasa.SmartPlug("192.168.4.100")
+WaterPumpUp = kasa.SmartPlug("192.168.4.100")
 WaterPumpUp.update()
 
-ECPumpUp = Kasa.SmartPlug("192.168.4.101")
+ECPumpUp = kasa.SmartPlug("192.168.4.101")
 ECPumpUp.update()
 
-pHPumpDown = Kasa.SmartPlug("192.168.4.87")
+pHPumpDown = kasa.SmartPlug("192.168.4.87")
 pHPumpDown.update()
 
-pHPumpUp = Kasa.SmartPlug("192.168.4.98")
+pHPumpUp = kasa.SmartPlug("192.168.4.98")
 pHPumpUp.update()
 
-LightPlug = Kasa.SmartPlug("192.168.4.89")
+LightPlug = kasa.SmartPlug("192.168.4.89")
 LightPlug.update()
 
 import time

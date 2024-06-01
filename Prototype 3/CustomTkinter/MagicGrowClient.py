@@ -31,6 +31,8 @@ app.geometry('%dx%d+%d+%d' % (1000, 700, 0, 0)) #w, h, x, y
 
 app.title("MagicGrow")
 
+app.wm_iconphoto(True, r"C:\Users\kavet\OneDrive\Documents\GitHub\MagicGrow\Prototype 3\CustomTkinter\Images\Side_icon.bmp")
+
 #tabview setup
 
 tabview = customtkinter.CTkTabview(master=app)
